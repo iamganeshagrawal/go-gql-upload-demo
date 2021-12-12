@@ -5,6 +5,9 @@
 *.so
 *.dylib
 
+# Output Dir for program binaries
+.bin/
+
 # Test binary, built with `go test -c`
 *.test
 
@@ -13,3 +16,7 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+
+# File Upload Dir
+uploads/

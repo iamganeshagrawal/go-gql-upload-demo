@@ -1,0 +1,5 @@
+"The `UploadFile` type, represents the request for uploading a file with certain payload."
+input UploadFile {
+  id: Int!
+  file: Upload!
+}

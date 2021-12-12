@@ -1,0 +1,15 @@
+version: '3'
+
+tasks:
+  dev:
+    desc: Run GQL Server and Playground
+    cmds:
+      - go run ./cmd/main/main.go
+  gen:
+    desc: Re-generate gql schema 
+    cmds:
+      - go generate ./...
+  build:
+    desc: Build the go binary
+    cmds:
+      - go build -o ./.bin/server ./cmd/main/main.go
