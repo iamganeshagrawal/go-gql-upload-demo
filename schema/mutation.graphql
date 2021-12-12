@@ -1,0 +1,7 @@
+"The `Mutation` type, represents all updates we can make to our data."
+type Mutation {
+  singleUpload(file: Upload!): File!
+  singleUploadWithPayload(req: UploadFile!): File!
+  multipleUpload(files: [Upload!]!): [File!]!
+  multipleUploadWithPayload(req: [UploadFile!]!): [File!]!
+}
