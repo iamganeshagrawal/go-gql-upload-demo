@@ -1,3 +1,61 @@
 type Query {
   hello: String!
+  test(satisfies: [String!]): testResponse!
+}
+
+type testResponse {
+  preloads: [String!]!
+  a: [A!]!
+}
+
+interface Collection {
+  timestamp: Time
+}
+
+type A implements Collection {
+  timestamp: Time
+  a1: Int!
+  a2: Int!
+  a3: String!
+  a4: Float!
+  a5: Time
+  b: [B]
+  c: [C]
+}
+
+interface Group {
+  eventId: ID
+}
+
+type B implements Group {
+  eventId: ID
+  b1: Int
+  b2: String
+  d: D
+}
+
+type C implements Group {
+  eventId: ID
+  c1: Int
+  c2: String
+  e: E
+}
+
+interface Record {
+  timestamp: Time
+  eventId: ID
+}
+
+type D implements Record {
+  timestamp: Time
+  eventId: ID
+  d1: String
+  d2: String
+}
+
+type E implements Record {
+  timestamp: Time
+  eventId: ID
+  e1: Float
+  e2: Int
 }

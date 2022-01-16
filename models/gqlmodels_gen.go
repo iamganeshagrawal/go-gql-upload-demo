@@ -3,8 +3,71 @@
 package models
 
 import (
+	"time"
+
 	"github.com/99designs/gqlgen/graphql"
 )
+
+type Collection interface {
+	IsCollection()
+}
+
+type Group interface {
+	IsGroup()
+}
+
+type Record interface {
+	IsRecord()
+}
+
+type A struct {
+	Timestamp *time.Time `json:"timestamp"`
+	A1        int        `json:"a1"`
+	A2        int        `json:"a2"`
+	A3        string     `json:"a3"`
+	A4        float64    `json:"a4"`
+	A5        *time.Time `json:"a5"`
+	B         []*B       `json:"b"`
+	C         []*C       `json:"c"`
+}
+
+func (A) IsCollection() {}
+
+type B struct {
+	EventID *string `json:"eventId"`
+	B1      *int    `json:"b1"`
+	B2      *string `json:"b2"`
+	D       *D      `json:"d"`
+}
+
+func (B) IsGroup() {}
+
+type C struct {
+	EventID *string `json:"eventId"`
+	C1      *int    `json:"c1"`
+	C2      *string `json:"c2"`
+	E       *E      `json:"e"`
+}
+
+func (C) IsGroup() {}
+
+type D struct {
+	Timestamp *time.Time `json:"timestamp"`
+	EventID   *string    `json:"eventId"`
+	D1        *string    `json:"d1"`
+	D2        *string    `json:"d2"`
+}
+
+func (D) IsRecord() {}
+
+type E struct {
+	Timestamp *time.Time `json:"timestamp"`
+	EventID   *string    `json:"eventId"`
+	E1        *float64   `json:"e1"`
+	E2        *int       `json:"e2"`
+}
+
+func (E) IsRecord() {}
 
 // The `File` type, represents the response of uploading a file.
 type File struct {
@@ -18,4 +81,9 @@ type File struct {
 type UploadFile struct {
 	ID   int            `json:"id"`
 	File graphql.Upload `json:"file"`
+}
+
+type TestResponse struct {
+	Preloads []string `json:"preloads"`
+	A        []*A     `json:"a"`
 }
